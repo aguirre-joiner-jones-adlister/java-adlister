@@ -11,7 +11,7 @@ CREATE TABLE users (
     username VARCHAR(240) NOT NULL,
     email VARCHAR(240) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    avatar VARCHAR(255) NOT NULL,
+    avatar VARCHAR(2045) NOT NULL,
     PRIMARY KEY (id)
 );
 

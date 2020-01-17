@@ -8,7 +8,9 @@
         <ul class="nav navbar-nav navbar-right">
             <c:choose>
                 <c:when test="${sessionScope.loggedIn}">
+                    <li><a href="/profile">Profile</a></li>
                     <li><a href="/logout">Logout</a></li>
+
                 </c:when>
                 <c:otherwise>
                     <li><a href="/login">Login</a></li>

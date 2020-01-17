@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
         String avatar = request.getParameter("avatar");
-        String image = avatar != null ? avatar : "https://media.giphy.com/media/IiuJwbb5uyrSg/giphy.gif";
+        String image =  avatar.equals("") ? avatar : "https://media.giphy.com/media/IiuJwbb5uyrSg/giphy.gif";
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
