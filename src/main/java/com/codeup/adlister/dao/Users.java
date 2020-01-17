@@ -9,5 +9,6 @@ public interface Users {
     ArrayList<User>all();
     User findByUsername(String username);
     Long insert(User user);
+    int updateUser(User user);
     int deleteById(Long id);
 }
