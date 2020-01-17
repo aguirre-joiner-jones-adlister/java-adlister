@@ -15,9 +15,9 @@ public class MySQLUsersDao implements Users {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUsername(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUsername(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -28,11 +28,11 @@ public class MySQLUsersDao implements Users {
     public ArrayList<User> all() {
         PreparedStatement statement = null;
         ArrayList<User> allUsers = new ArrayList<>();
-        String query =  "SELECT * FROM users";
-        try{
+        String query = "SELECT * FROM users";
+        try {
             statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 allUsers.add(new User(
                         rs.getLong("id"),
                         rs.getString("username"),
@@ -41,7 +41,7 @@ public class MySQLUsersDao implements Users {
                         rs.getString("avatar")
                 ));
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return allUsers;
@@ -57,6 +57,20 @@ public class MySQLUsersDao implements Users {
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a user by username", e);
         }
+    }
+
+    @Override
+    public int deleteUser(long id) {
+        int rowsAffected = 0;
+        String query = "DELETE FROM users WHERE id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            rowsAffected = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowsAffected;
     }
 
     @Override
@@ -80,7 +94,7 @@ public class MySQLUsersDao implements Users {
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
+        if (!rs.next()) {
             return null;
         }
         return new User(
@@ -112,10 +126,7 @@ public class MySQLUsersDao implements Users {
         return numberOfRowsEffected;
     }
 
-    @Override
-    public int deleteById(Long id) {
-        return 0;
-    }
+
 
 
 

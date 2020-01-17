@@ -1,10 +1,10 @@
 create database adlister_db;
 USE adlister_db;
 
-DROP TABLE IF EXISTS ads;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS ad_category;
 DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS ads;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
