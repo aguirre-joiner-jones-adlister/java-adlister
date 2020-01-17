@@ -1,3 +1,4 @@
+create database adlister_db;
 USE adlister_db;
 
 DROP TABLE IF EXISTS ads;
@@ -20,3 +21,21 @@ CREATE TABLE ads (
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
 );
+
+create table if not exists ad_category (
+    ads_id int unsigned not null ,
+    categories_id int unsigned not null,
+    foreign key (ads_id) references ads (id),
+    foreign key (categories_id) references categories (id)
+);
+
+create table if not exists categories (
+    id int unsigned auto_increment,
+    name varchar(30) not null,
+    primary key (id)
+
+);
+
+show databases ;
+use adlister_db;
+show tables;
