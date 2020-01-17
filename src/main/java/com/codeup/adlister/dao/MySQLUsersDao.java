@@ -1,6 +1,5 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
@@ -71,11 +70,6 @@ public class MySQLUsersDao implements Users {
         );
     }
 
-
-    @Override
-    public int updateUser(User user) {
-        return 0;
-    }
 
     @Override
     public int deleteById(Long id) {

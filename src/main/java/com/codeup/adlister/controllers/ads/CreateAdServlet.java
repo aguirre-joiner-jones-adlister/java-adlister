@@ -1,4 +1,4 @@
-package com.codeup.adlister.controllers;
+package com.codeup.adlister.controllers.ads;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
