@@ -24,7 +24,24 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public ArrayList<User> all() {
-        return null;
+        PreparedStatement statement = null;
+        ArrayList<User> allUsers = new ArrayList<>();
+        String query =  "SELECT * FROM users";
+        try{
+            statement = connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                allUsers.add(new User(
+                        rs.getLong("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("avatar")
+                ));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allUsers;
     }
 
     @Override
@@ -42,12 +59,13 @@ public class MySQLUsersDao implements Users {
     @Override
     public Long insert(User user) {
         long idForNewUser = 0L;
-        String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO users(username, email, password, avatar) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getAvatar());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();

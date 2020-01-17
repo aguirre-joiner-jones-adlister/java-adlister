@@ -26,6 +26,10 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
+            <div class="form-group">
+                <label for="avatar">IMG URL</label>
+                <input id="avatar" name="avatar" class="form-control" type="text">
+            </div>
             <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>
