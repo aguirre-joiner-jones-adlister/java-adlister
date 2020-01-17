@@ -60,6 +60,20 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
+    public int deleteUser(long id) {
+        int rowsAffected = 0;
+        String query = "DELETE FROM users WHERE id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            rowsAffected = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowsAffected;
+    }
+
+    @Override
     public Long insert(User user) {
         long idForNewUser = 0L;
         String query = "INSERT INTO users( username, email, password, avatar) VALUES (?, ?, ?, ?)";
@@ -112,10 +126,7 @@ public class MySQLUsersDao implements Users {
         return numberOfRowsEffected;
     }
 
-    @Override
-    public int deleteById(Long id) {
-        return 0;
-    }
+
 
 
 

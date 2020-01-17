@@ -10,5 +10,5 @@ public interface Users {
     User findByUsername(String username);
     Long insert(User user);
     int updateUser(User user);
-    int deleteById(Long id);
+    int deleteUser(long id);
 }
