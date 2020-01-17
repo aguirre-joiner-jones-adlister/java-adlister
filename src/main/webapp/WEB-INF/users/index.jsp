@@ -12,7 +12,7 @@
     <c:forEach var="user" items="${users}">
         <div class="col-md-6">
             <h2><c:out value="${user.username}"/></h2>
-            <p> <c:out value="${user.avatar}"/></p>
+            <img src="${user.avatar}" alt="avatar" class="img-thumbnail rounded">
         </div>
     </c:forEach>
 
