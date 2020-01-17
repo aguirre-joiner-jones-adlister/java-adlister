@@ -1,9 +1,11 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
@@ -21,6 +23,10 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public ArrayList<User> all() {
+        return null;
+    }
 
     @Override
     public User findByUsername(String username) {
@@ -36,6 +42,7 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public Long insert(User user) {
+        long idForNewUser = 0L;
         String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -45,10 +52,11 @@ public class MySQLUsersDao implements Users {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            return rs.getLong(1);
+            idForNewUser = rs.getLong(1);
         } catch (SQLException e) {
             throw new RuntimeException("Error creating new user", e);
         }
+        return idForNewUser;
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
@@ -61,6 +69,31 @@ public class MySQLUsersDao implements Users {
             rs.getString("email"),
             rs.getString("password")
         );
+    }
+
+
+    @Override
+    public int updateUser(User user) {
+        return 0;
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        User newUser = new User(
+                "amber",
+                "amber@mail.com",
+                "aj"
+        );
+        DaoFactory.getUsersDao().insert(newUser);
+
+
+        User amber = DaoFactory.getUsersDao().findByUsername("amber");
+
+        System.out.println(amber);
     }
 
 }
