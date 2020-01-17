@@ -11,6 +11,8 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
         <a href="/update">Update Profile</a>
+        <a href="/delete">Delete Profile</a>
+
     </div>
 
 </body>

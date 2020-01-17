@@ -16,8 +16,7 @@ public class UpdateUserServlet extends HttpServlet {
 
     protected void doGet(
             HttpServletRequest request,
-            HttpServletResponse response
-    ) {
+            HttpServletResponse response) {
         try {
             Boolean loggedIn = (Boolean)request.getSession().getAttribute("loggedIn");
 
