@@ -1,8 +1,11 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
+import javax.servlet.ServletException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -34,6 +37,7 @@ public class MySQLUsersDao implements Users {
                 allUsers.add(new User(
                         rs.getLong("id"),
                         rs.getString("username"),
+                        rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("avatar")
                 ));
@@ -59,7 +63,7 @@ public class MySQLUsersDao implements Users {
     @Override
     public Long insert(User user) {
         long idForNewUser = 0L;
-        String query = "INSERT INTO users(username, email, password, avatar) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO users( username, email, password, avatar) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
@@ -84,28 +88,58 @@ public class MySQLUsersDao implements Users {
             rs.getLong("id"),
             rs.getString("username"),
             rs.getString("email"),
-            rs.getString("password")
+            rs.getString("password"),
+            rs.getString("avatar")
         );
     }
 
+    @Override
+    public int updateUser(User user) {
+        int numberOfRowsEffected = 0;
+        try {
+            String query = "update users set username = ?, email = ?, avatar = ? where id = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            stmt.setString(1,user.getUsername());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getAvatar());
+            stmt.setString(4, Long.toString(user.getId()));
+
+            numberOfRowsEffected = stmt.executeUpdate();
+        } catch( SQLException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        return numberOfRowsEffected;
+    }
 
     @Override
     public int deleteById(Long id) {
         return 0;
     }
 
+
+
+
+    //w: main
+
     public static void main(String[] args) {
         User newUser = new User(
-                "amber",
+                1,
+                "TESTING123",
                 "amber@mail.com",
-                "aj"
+                "aj",
+                "http://localhost:8080/update"
         );
-        DaoFactory.getUsersDao().insert(newUser);
+        DaoFactory.getUsersDao().updateUser(newUser);
 
 
-        User amber = DaoFactory.getUsersDao().findByUsername("amber");
+        ArrayList<User> all = DaoFactory.getUsersDao().all();
+        for (User user : all) {
+            System.out.println(user);
+        }
 
-        System.out.println(amber);
+
     }
 
 }
