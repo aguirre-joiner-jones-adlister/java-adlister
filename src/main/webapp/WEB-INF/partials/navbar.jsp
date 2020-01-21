@@ -11,7 +11,7 @@
                     <li><a href="/profile">Profile</a></li>
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/ads">View Ads</a></li>
-                    <li><a href="/ads/create">Create Ads</a></li>
+                    <li><a href="/ads/create">Create Ad</a></li>
 
                 </c:when>
                 <c:otherwise>
