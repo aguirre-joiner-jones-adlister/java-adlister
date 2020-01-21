@@ -1,5 +1,6 @@
 package com.codeup.adlister.models;
 
+import java.sql.Array;
 import java.util.Arrays;
 
 public class Ad {
@@ -38,6 +39,9 @@ public class Ad {
         this.userId = userId;
         this.title = title;
         this.description = description;
+    }
+
+    public Ad(long id, long user_id, String title, String description, Array name) {
     }
 
     public long getId() {
