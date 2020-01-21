@@ -35,7 +35,14 @@ public class MySQLAdsDao implements Ads {
            String query =  "SELECT a.*, c.name FROM ads as a join ad_category as ac on a.id = ac.ads_id join categories as c on ac.categories_id = c.id";
             stmt = connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
+//            return createAdsFromResults(rs);
+            long adId;
+            while(rs.next()){
+                adId = rs.getLong("id");
+
+                System.out.println(rs.getString("name"));
+            }
+            return new ArrayList<>();
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
@@ -76,8 +83,7 @@ public class MySQLAdsDao implements Ads {
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description"),
-                rs.getArray("name")
+            rs.getString("description")
         );
     }
 
@@ -120,5 +126,10 @@ public class MySQLAdsDao implements Ads {
     @Override
     public int delete(Long id) {
         return 0;
+    }
+
+    public static void main(String[] args) {
+        Ads adsDao = new MySQLAdsDao(new Config());
+        adsDao.all();
     }
 }
