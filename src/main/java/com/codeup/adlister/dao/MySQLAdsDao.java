@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
@@ -30,7 +31,8 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+           String query =  "SELECT a.*, c.name FROM ads as a join ad_category as ac on a.id = ac.ads_id join categories as c on ac.categories_id = c.id";
+            stmt = connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -70,5 +72,38 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+
+    @Override
+    public Ad getAdById(Long id) {
+        Ad found = new Ad();
+        try {
+            String query = "select * from ads where id = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, String.valueOf(id));
+
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                found.setId(id);
+                found.setUserId(rs.getLong("user_id"));
+                found.setTitle(rs.getString("title"));
+                found.setDescription(rs.getString("description"));
+            }
+
+
+        } catch( SQLException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        return found;
+    }
+
+    @Override
+    public int editAd(Ad ad) {
+        return 0;
+    }
+
+    @Override
+    public int delete(Long id) {
+        return 0;
     }
 }
