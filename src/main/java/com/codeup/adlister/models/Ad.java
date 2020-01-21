@@ -1,17 +1,39 @@
 package com.codeup.adlister.models;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Ad {
     private long id;
     private long userId;
     private String title;
     private String description;
-    private String categories;
+    private List<String> categories;
 
     public Ad() {
     }
 
+    public Ad(long id, long userId, String title, String description, List<String> categories) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.categories = categories;
+    }
+
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.categories = new ArrayList<>();
+    }
+
+
+
+    public Ad(long userId, String title, String description, List<String> categories) {
         this.userId = userId;
         this.title = title;
         this.description = description;
@@ -22,7 +44,16 @@ public class Ad {
         this.userId = userId;
         this.title = title;
         this.description = description;
+    }
 
+    public void addToCategories(String category){
+        this.categories.add(category);
+    }
+
+    public void printCatg(){
+        for (String category : categories) {
+            System.out.println("c: "+ category);
+        }
     }
 
     public long getId() {
@@ -31,6 +62,14 @@ public class Ad {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 
     public long getUserId() {
@@ -64,6 +103,7 @@ public class Ad {
                 ", userId=" + userId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", categories=" + categories +
                 '}';
     }
 }

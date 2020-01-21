@@ -16,6 +16,12 @@
         <div class="col-md-6">
             <h2><c:out value="${ad.title}"/></h2>
             <p> <c:out value="${ad.description}"/></p>
+        <c:forEach var="category" items="${ad.categories}">
+            <p> <c:out value="${category}"/></p>
+        </c:forEach>
+
+        <%--            <p> <c:out value="${ad.categories}"/></p>--%>
+
             <c:if test="${sessionScope.user.id eq ad.userId}">
                 <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
             </c:if>
