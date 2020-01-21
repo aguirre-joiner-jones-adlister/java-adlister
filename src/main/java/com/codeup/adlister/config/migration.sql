@@ -28,8 +28,10 @@ CREATE TABLE ads (
 create table if not exists ad_category (
     ads_id int unsigned not null ,
     categories_id int unsigned not null,
-    foreign key (ads_id) references ads (id),
+    foreign key (ads_id) references ads (id)
+                                       on delete cascade ,
     foreign key (categories_id) references categories (id)
+                                       on delete cascade
 );
 
 create table if not exists categories (
@@ -38,6 +40,15 @@ create table if not exists categories (
     primary key (id)
 
 );
+
+insert into categories (name) values
+('clothes'),
+('auto'),
+('children'),
+('pets'),
+('miscellaneous'),
+('home');
+select * from categories;
 
 show databases ;
 use adlister_db;

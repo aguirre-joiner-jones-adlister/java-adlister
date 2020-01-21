@@ -16,6 +16,10 @@
         <div class="col-md-6 card">
             <h2><c:out value="${user.username}"/></h2>
             <img src="<c:out value="${user.avatar}"/>" alt="avatar" class="img-thumbnail rounded" style="height: 50px; width: 50px">
+            <c:if test="${sessionScope.user.id eq user.id}">
+                <a href="/update">Edit Profile</a>
+                <a href="/delete">Delete Profile</a>
+            </c:if>
         </div>
     </c:forEach>
 

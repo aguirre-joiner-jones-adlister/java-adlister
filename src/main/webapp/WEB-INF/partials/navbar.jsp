@@ -10,6 +10,7 @@
                 <c:when test="${sessionScope.loggedIn}">
                     <li><a href="/profile">Profile</a></li>
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href="/ads">Ads</a></li>
 
                 </c:when>
                 <c:otherwise>
