@@ -28,19 +28,19 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description"),
-                request.getParameterValues("category")
-        );
+//        Ad ad = new Ad(
+//            user.getId(),
+//            request.getParameter("title"),
+//            request.getParameter("description"),
+//                request.getParameterValues("category")
+//        );
 
-
-        long adID = DaoFactory.getAdsDao().insert(ad);
-        for (String cat : request.getParameterValues("category")) {
-        Ad_Category adCat = new Ad_Category(adID, (Long.parseLong(cat)));
-            DaoFactory.getAdsDao().insertAdCat(adCat);
-        }
+//
+//        long adID = DaoFactory.getAdsDao().insert(ad);
+//        for (String cat : request.getParameterValues("category")) {
+//        Ad_Category adCat = new Ad_Category(adID, (Long.parseLong(cat)));
+//            DaoFactory.getAdsDao().insertAdCat(adCat);
+//        }
 
         response.sendRedirect("/ads");
 //

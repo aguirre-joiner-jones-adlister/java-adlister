@@ -2,18 +2,19 @@ package com.codeup.adlister.models;
 
 import java.sql.Array;
 import java.util.Arrays;
+import java.util.List;
 
 public class Ad {
     private long id;
     private long userId;
     private String title;
     private String description;
-    private String[] categories;
+    private List<Category> categories;
 
     public Ad() {
     }
 
-    public Ad(long id, long userId, String title, String description, String[] categories) {
+    public Ad(long id, long userId, String title, String description, List<Category> categories) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -28,7 +29,7 @@ public class Ad {
         this.description = description;
     }
 
-    public Ad(long userId, String title, String description, String[] categories) {
+    public Ad(long userId, String title, String description, List<Category> categories) {
         this.userId = userId;
         this.title = title;
         this.description = description;
@@ -41,8 +42,6 @@ public class Ad {
         this.description = description;
     }
 
-    public Ad(long id, long user_id, String title, String description, Array name) {
-    }
 
     public long getId() {
         return id;
@@ -52,11 +51,11 @@ public class Ad {
         this.id = id;
     }
 
-    public String[] getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(String[] categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
@@ -91,7 +90,7 @@ public class Ad {
                 ", userId=" + userId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", categories=" + Arrays.toString(categories) +
+                ", categories=" + categories +
                 '}';
     }
 }

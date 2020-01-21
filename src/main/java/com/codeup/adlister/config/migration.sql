@@ -31,7 +31,8 @@ create table if not exists ad_category (
     foreign key (ads_id) references ads (id)
                                        on delete cascade ,
     foreign key (categories_id) references categories (id)
-                                       on delete cascade
+                                       on delete cascade,
+                                      constraint ac UNIQUE(ads_id, categories_id)
 );
 
 create table if not exists categories (
@@ -54,11 +55,16 @@ show databases ;
 use adlister_db;
 show tables;
 
+SELECT * FROM users;
 SELECT * FROM ads;
 
-insert into ads(user_id, title, description)VALUE (2, 'cats for sell', 'really skinny kitties');
-insert into ads(user_id, title, description)VALUE (2, 'car for sell', 'really fast car');
-insert into ads(user_id, title, description)VALUE (2, 'kids for sell', 'really skinny kids');
+insert into users(id,username,email,password,avatar)VALUE (1,'chris','chris@email.com', 'chris','');
+insert into ads(user_id, title, description)VALUE (1, 'cats for sell', 'really skinny kitties');
+insert into ads(user_id, title, description)VALUE (1, 'car for sell', 'really fast car');
+insert into ads(user_id, title, description)VALUE (1, 'kids for sell', 'really skinny kids');
+insert into ads(user_id, title, description)VALUE (1, 'house for sell', 'nice house comes with pets');
+insert into ads(user_id, title, description)VALUE (1, 'good foozball', 'really good foozball');
+insert into ads(user_id, title, description)VALUE (1, 'food', 'really good food');
 
-insert into ad_category (ads_id, categories_id) VALUES(7,4),(8,2),(9,3);
+insert into ad_category (ads_id, categories_id) VALUES(4,4),(4,1),(5,2),(6,3),(7,6),(7,4),(8,5),(9,5);
 SELECT a.*, c.name FROM ads as a join ad_category as ac on a.id = ac.ads_id join categories as c on ac.categories_id = c.id;
