@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 
+import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Ad_Category;
 import com.mysql.cj.jdbc.Driver;
@@ -30,19 +31,39 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public List<Ad> all() {
-        PreparedStatement stmt = null;
+        List<Ad> allAds = new ArrayList<>();
+        PreparedStatement stmt1 = null;
+        PreparedStatement stmt2 = null;
         try {
-           String query =  "SELECT a.*, c.name FROM ads as a join ad_category as ac on a.id = ac.ads_id join categories as c on ac.categories_id = c.id";
-            stmt = connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
+//           String query =  "SELECT a.*, c.name FROM ads as a join ad_category as ac on a.id = ac.ads_id join categories as c on ac.categories_id = c.id";
+            String query1 = "select * from ads";
+            stmt1 = connection.prepareStatement(query1);
+            ResultSet rs = stmt1.executeQuery();
 //            return createAdsFromResults(rs);
             long adId;
             while(rs.next()){
-                adId = rs.getLong("id");
+                long id = rs.getLong("id");
+                Ad ad = new Ad(
+                        rs.getLong("id"),
+                        rs.getLong("user_id"),
+                        rs.getString("title"),
+                        rs.getString("description")
+                );
 
-                System.out.println(rs.getString("name"));
+                String query2 = "select c.name from ads as a join ad_category ac on a.id = ac.ads_id " +
+                        "join categories c on ac.categories_id = c.id" +
+                        " where a.id = ?";
+                stmt2 = connection.prepareStatement(query2);
+                stmt2.setLong(1, rs.getLong("id"));
+                ResultSet rs2 = stmt2.executeQuery();
+                while (rs2.next()){
+//                    System.out.println(rs2.getString(1));
+                    ad.addToCategories(rs2.getString(1));
+                }
+                allAds.add(ad);
+
             }
-            return new ArrayList<>();
+            return allAds;
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
@@ -130,6 +151,10 @@ public class MySQLAdsDao implements Ads {
 
     public static void main(String[] args) {
         Ads adsDao = new MySQLAdsDao(new Config());
-        adsDao.all();
+       List<Ad> all = adsDao.all();
+        for (Ad ad : all) {
+            System.out.println("Name: " + ad.getTitle());
+            ad.printCatg();
+        }
     }
 }

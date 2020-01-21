@@ -1,6 +1,7 @@
 package com.codeup.adlister.models;
 
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,12 +10,12 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    private List<Category> categories;
+    private List<String> categories;
 
     public Ad() {
     }
 
-    public Ad(long id, long userId, String title, String description, List<Category> categories) {
+    public Ad(long id, long userId, String title, String description, List<String> categories) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -27,9 +28,12 @@ public class Ad {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.categories = new ArrayList<>();
     }
 
-    public Ad(long userId, String title, String description, List<Category> categories) {
+
+
+    public Ad(long userId, String title, String description, List<String> categories) {
         this.userId = userId;
         this.title = title;
         this.description = description;
@@ -42,6 +46,15 @@ public class Ad {
         this.description = description;
     }
 
+    public void addToCategories(String category){
+        this.categories.add(category);
+    }
+
+    public void printCatg(){
+        for (String category : categories) {
+            System.out.println("c: "+ category);
+        }
+    }
 
     public long getId() {
         return id;
@@ -51,11 +64,11 @@ public class Ad {
         this.id = id;
     }
 
-    public List<Category> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<String> categories) {
         this.categories = categories;
     }
 
