@@ -66,5 +66,10 @@ insert into ads(user_id, title, description)VALUE (1, 'house for sell', 'nice ho
 insert into ads(user_id, title, description)VALUE (1, 'good foozball', 'really good foozball');
 insert into ads(user_id, title, description)VALUE (1, 'food', 'really good food');
 
-insert into ad_category (ads_id, categories_id) VALUES(4,4),(4,1),(5,2),(6,3),(7,6),(7,4),(8,5),(9,5);
+insert into ad_category (ads_id, categories_id) VALUES(1,4),(1,1),(2,2),(6,3),(4,6),(2,4),(3,5),(1,5);
 SELECT a.*, c.name FROM ads as a join ad_category as ac on a.id = ac.ads_id join categories as c on ac.categories_id = c.id;
+
+
+select c.name from ads as a join ad_category ac on a.id = ac.ads_id
+join categories c on ac.categories_id = c.id
+where a.id = 1;
