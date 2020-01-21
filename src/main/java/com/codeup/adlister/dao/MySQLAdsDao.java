@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Ad_Category;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -48,6 +49,21 @@ public class MySQLAdsDao implements Ads {
             stmt.setLong(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
+    }
+
+    public Long insertAdCat(Ad_Category adCat) {
+        try {
+            String insertQuery = "INSERT INTO ad_category(ads_id, categories_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            stmt.setLong(1, adCat.getAdId());
+            stmt.setLong(2, adCat.getCategoryId());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
