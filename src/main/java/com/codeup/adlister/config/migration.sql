@@ -57,6 +57,7 @@ show tables;
 
 SELECT * FROM users;
 SELECT * FROM ads;
+select * from categories;
 
 insert into users(id,username,email,password,avatar)VALUE (1,'chris','chris@email.com', 'chris','');
 insert into ads(user_id, title, description)VALUE (1, 'cats for sell', 'really skinny kitties');
