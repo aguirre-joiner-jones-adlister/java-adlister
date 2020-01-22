@@ -24,6 +24,8 @@
 
             <c:if test="${sessionScope.user.id eq ad.userId}">
                 <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
+                <a href="/ads/delete?adId=${ad.id}">Delete Ad</a>
+
             </c:if>
         </div>
     </c:forEach>

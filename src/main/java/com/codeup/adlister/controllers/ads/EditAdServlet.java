@@ -45,28 +45,21 @@ public class EditAdServlet extends HttpServlet {
     ){
     try {
         long id = Long.parseLong(request.getParameter("id"));
-        System.out.println("id: "+id);
         long userId = Long.parseLong(request.getParameter("userId"));
-        System.out.println("userID: "+userId);
         String title = request.getParameter("title")== null ? "" : request.getParameter("title");
-        System.out.println("title: "+title);
         String description = request.getParameter("description") == null ? "" : request.getParameter("description");
-        System.out.println("DESCription: "+description);
         String[] categories = request.getParameterValues("category") == null ? new String[] {"miscellaneous"} : request.getParameterValues("category");
-        System.out.println("length: "+categories.length);
 
         boolean inValid =
              Long.toString(id).equals("") || Long.toString(userId).equals("") ||
                  title.equals("") ||
                 description.equals("") ;
         if(!inValid){
-            System.out.println("valid");
             Ad ad = new Ad(id, userId, title, description);
             DaoFactory.getAdsDao().editAd(ad, categories);
             response.sendRedirect("/profile");
             return;
         }
-        System.out.println("not valid");
         response.sendRedirect("/ads/edit?alert=true&adId="+id);
         return;
 

@@ -25,6 +25,14 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
+
+create table if not exists categories (
+                                          id int unsigned auto_increment,
+                                          name varchar(30) not null,
+                                          primary key (id)
+
+);
+
 create table if not exists ad_category (
     ads_id int unsigned not null ,
     categories_id int unsigned not null,
@@ -35,12 +43,7 @@ create table if not exists ad_category (
                                       constraint ac UNIQUE(ads_id, categories_id)
 );
 
-create table if not exists categories (
-    id int unsigned auto_increment,
-    name varchar(30) not null,
-    primary key (id)
 
-);
 
 insert into categories (name) values
 ('clothes'),
