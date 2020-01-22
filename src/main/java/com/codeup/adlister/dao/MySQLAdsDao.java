@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 
 
+import com.codeup.adlister.config.Config;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Ad_Category;
 import com.mysql.cj.jdbc.Driver;
@@ -162,21 +163,40 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public int editAd(Ad ad) {
-        return 0;
+    public void editAd(Ad ad, String[] categories) {
+        try {
+            delete(ad.getId());
+            insert(ad, categories);
+
+        } catch(Exception ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+
     }
 
     @Override
     public int delete(Long id) {
-        return 0;
+        int numberOfRowsAffected = 0;
+        try {
+            String deleteQuery = "delete from ads where id = ? ";
+            PreparedStatement stmtDelete = connection.prepareStatement(deleteQuery);
+            stmtDelete.setLong(1, id);
+            numberOfRowsAffected = stmtDelete.executeUpdate();
+        } catch(SQLException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        return numberOfRowsAffected;
     }
 
     public static void main(String[] args) {
         Ads adsDao = new MySQLAdsDao(new Config());
+        adsDao.delete(1L);
        List<Ad> all = adsDao.all();
         for (Ad ad : all) {
+            System.out.println("id: " + ad.getId());
             System.out.println("Name: " + ad.getTitle());
-            ad.printCatg();
+
         }
+
     }
 }
