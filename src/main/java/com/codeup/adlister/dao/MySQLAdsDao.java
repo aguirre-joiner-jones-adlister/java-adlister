@@ -1,7 +1,7 @@
 package com.codeup.adlister.dao;
 
 
-import com.codeup.adlister.config.Config;
+
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Ad_Category;
 import com.mysql.cj.jdbc.Driver;
@@ -144,8 +144,16 @@ public class MySQLAdsDao implements Ads {
                 found.setUserId(rs.getLong("user_id"));
                 found.setTitle(rs.getString("title"));
                 found.setDescription(rs.getString("description"));
+                String query2 = "select c.name from ads as a join ad_category ac on a.id = ac.ads_id " +
+                        "join categories c on ac.categories_id = c.id" +
+                        " where a.id = ?";
+                PreparedStatement stmt2 = connection.prepareStatement(query2);
+                stmt2.setLong(1, id);
+                ResultSet rs2 = stmt2.executeQuery();
+                while(rs2.next()){
+                    found.addToCategories(rs2.getString(1));
+                }
             }
-
 
         } catch( SQLException ex) {
             System.out.printf("ERROR: %s\n", ex);
