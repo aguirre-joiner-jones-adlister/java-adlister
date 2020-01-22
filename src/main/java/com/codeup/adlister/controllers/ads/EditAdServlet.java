@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 @WebServlet(name = "edit", urlPatterns = "/ads/edit")
 public class EditAdServlet extends HttpServlet {
@@ -47,19 +48,18 @@ public class EditAdServlet extends HttpServlet {
         System.out.println("id: "+id);
         long userId = Long.parseLong(request.getParameter("userId"));
         System.out.println("userID: "+userId);
-        String title = request.getParameter("title");
+        String title = request.getParameter("title")== null ? "" : request.getParameter("title");
         System.out.println("title: "+title);
-        String description = request.getParameter("description");
+        String description = request.getParameter("description") == null ? "" : request.getParameter("description");
         System.out.println("DESCription: "+description);
-        String[] categories = request.getParameterValues("category");
+        String[] categories = request.getParameterValues("category") == null ? new String[] {"miscellaneous"} : request.getParameterValues("category");
         System.out.println("length: "+categories.length);
 
-        boolean valid = !Long.toString(id).equals("") ||
-                !Long.toString(userId).equals("") ||
-                !title.equals("") ||
-                !description.equals("") ;
-        System.out.println(valid);
-        if(valid){
+        boolean inValid =
+             Long.toString(id).equals("") || Long.toString(userId).equals("") ||
+                 title.equals("") ||
+                description.equals("") ;
+        if(!inValid){
             System.out.println("valid");
             Ad ad = new Ad(id, userId, title, description);
             DaoFactory.getAdsDao().editAd(ad, categories);
@@ -67,7 +67,8 @@ public class EditAdServlet extends HttpServlet {
             return;
         }
         System.out.println("not valid");
-        response.sendRedirect("/ads/edit?alert=true");
+        response.sendRedirect("/ads/edit?alert=true&adId="+id);
+        return;
 
 
     } catch(IOException ex) {

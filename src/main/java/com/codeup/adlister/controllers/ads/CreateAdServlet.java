@@ -37,7 +37,9 @@ public class CreateAdServlet extends HttpServlet {
                 title,
                 description
         );
-        String[] names = request.getParameterValues("category");
+        String[] names = request.getParameterValues("category") == null ? new String[] {"miscellaneous"} :
+                request.getParameterValues("category");
+
         System.out.println("length: "+ Arrays.toString(names));
         for (String categoryName : names) {
             ad.addToCategories(categoryName);
