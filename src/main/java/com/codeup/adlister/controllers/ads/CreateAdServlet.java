@@ -40,7 +40,6 @@ public class CreateAdServlet extends HttpServlet {
         String[] names = request.getParameterValues("category");
         System.out.println("length: "+ Arrays.toString(names));
         for (String categoryName : names) {
-            System.out.println(categoryName);
             ad.addToCategories(categoryName);
 
         }

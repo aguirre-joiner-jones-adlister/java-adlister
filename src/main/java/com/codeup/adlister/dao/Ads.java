@@ -11,7 +11,7 @@ public interface Ads {
     // insert a new ad and return the new ad's id
     Long insert(Ad ad, String[] categories);
     Ad getAdById(Long id);
-    int editAd(Ad ad);
+    void editAd(Ad ad, String[] categories);
     int delete(Long id);
 
     void insertAdCat(Ad_Category adCat);
