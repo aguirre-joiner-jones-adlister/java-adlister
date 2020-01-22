@@ -13,6 +13,7 @@ public interface Ads {
     Ad getAdById(Long id);
     void editAd(Ad ad, String[] categories);
     int delete(Long id);
+    List<Ad> searchAds(String searchTerm);
 
     void insertAdCat(Ad_Category adCat);
 }
