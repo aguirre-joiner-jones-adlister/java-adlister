@@ -19,6 +19,9 @@
         <h1>title = ${ad.title}</h1>
         <h2>description = ${ad.description}</h2>
         <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
+        <a href="/ads/delete?adId=${ad.id}">Delete Ad</a>
+
+
         <c:forEach var="category" items="${ad.categories}">
             <p>${category}</p>
         </c:forEach>
