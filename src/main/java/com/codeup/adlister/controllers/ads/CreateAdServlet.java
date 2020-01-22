@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,33 +29,26 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
-//        Ad ad = new Ad(
-//            user.getId(),
-//            request.getParameter("title"),
-//            request.getParameter("description"),
-//                request.getParameterValues("category")
-//        );
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
 
-//
-//        long adID = DaoFactory.getAdsDao().insert(ad);
-//        for (String cat : request.getParameterValues("category")) {
-//        Ad_Category adCat = new Ad_Category(adID, (Long.parseLong(cat)));
-//            DaoFactory.getAdsDao().insertAdCat(adCat);
-//        }
-
-        response.sendRedirect("/ads");
-//
-//        System.out.println(  request.getParameter("category"));
-//        );
+        Ad ad = new Ad(
+                user.getId(),
+                title,
+                description
+        );
         String[] names = request.getParameterValues("category");
-        List categories = Arrays.asList(names);
-        request.setAttribute("category", categories);
-//        RequestDispatcher rd = request.getRequestDispatcher("employee.jsp");
-//        rd.forward(request, response);
-        for (String name: names) {
-            System.out.println(name);
+        System.out.println("length: "+ Arrays.toString(names));
+        for (String categoryName : names) {
+            System.out.println(categoryName);
+            ad.addToCategories(categoryName);
 
         }
+        DaoFactory.getAdsDao().insert(ad, names);
+
+        response.sendRedirect("/ads");
+
+
     }
 
 }

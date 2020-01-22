@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -7,6 +8,11 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <c:if test="${param.alert}">
+        <div class="card red darken-4 white-text">
+            <h3>Incorrect Login Info</h3>
+        </div>
+    </c:if>
     <div class="container">
         <h1>Please Log In</h1>
         <form action="/login" method="POST">
