@@ -9,10 +9,10 @@
 <body>
     <jsp:include page="partials/navbar.jsp" />
     <c:if test="${param.alert}">
-        <h1>${param.message}</h1>
+        <h1 class="text-danger">${param.message}</h1>
     </c:if>
     <div class="container">
-        <h1>Please fill in your information.</h1>
+        <h1 class="text-primary">Register</h1>
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
