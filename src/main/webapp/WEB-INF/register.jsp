@@ -8,6 +8,9 @@
 </head>
 <body>
     <jsp:include page="partials/navbar.jsp" />
+    <c:if test="${param.alert}">
+        <h1>${param.message}</h1>
+    </c:if>
     <div class="container">
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post">

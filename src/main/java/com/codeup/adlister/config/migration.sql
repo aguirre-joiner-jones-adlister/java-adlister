@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username VARCHAR(240) NOT NULL,
+    username VARCHAR(240) unique NOT NULL,
     email VARCHAR(240) NOT NULL,
     password VARCHAR(255) NOT NULL,
     avatar VARCHAR(2045) NOT NULL,
@@ -25,6 +25,7 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
+SELECT * FROM ads WHERE title LIKE '%kids%' OR description LIKE '%kids%';
 
 create table if not exists categories (
                                           id int unsigned auto_increment,
@@ -42,7 +43,7 @@ create table if not exists ad_category (
                                        on delete cascade,
                                       constraint ac UNIQUE(ads_id, categories_id)
 );
-
+show tables;
 
 
 insert into categories (name) values
