@@ -9,9 +9,7 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <c:if test="${param.alert}">
-        <div class="card red darken-4 white-text">
-            <h3>Incorrect Login Info</h3>
-        </div>
+            <h1 class="text-danger">Incorrect Login Info</h1>
     </c:if>
     <div class="container">
         <h1>Please Log In</h1>
