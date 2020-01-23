@@ -15,7 +15,6 @@
     <c:choose>
         <c:when test="${not empty sessionScope.filtered}">
             <c:forEach var="ad" items="${sessionScope.filtered}">
-                <h2>WHEN</h2>
                 <div class="col-md-6">
                     <h2><c:out value="${ad.title}"/></h2>
                     <p> <c:out value="${ad.description}"/></p>
@@ -32,7 +31,6 @@
             </c:forEach>
         </c:when>
         <c:otherwise>
-            <h2>OTHERWISE</h2>
             <c:forEach var="ad" items="${ads}">
                 <div class="col-md-6">
                     <h2><c:out value="${ad.title}"/></h2>
