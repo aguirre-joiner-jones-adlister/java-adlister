@@ -5,12 +5,15 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
+    <style>
+        #ads-header{margin-left:30%;}
+    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
-    <h1>Here Are all the ads!</h1>
+<div class="container-fluid text-center row">
+    <h1 id="ads-header">Here Are all the ads!</h1>
 
     <c:choose>
         <c:when test="${not empty sessionScope.filtered}">

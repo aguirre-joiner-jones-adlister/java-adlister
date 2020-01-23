@@ -9,6 +9,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <jsp:include page="/WEB-INF/partials/head.jsp">
+        <jsp:param name="title" value="Edit ads" />
+    </jsp:include>
     <title>Edit</title>
 </head>
 <body>
@@ -30,19 +33,16 @@
         <h4>Please re-select categories</h4>
         <label>Categories<br>
             <label for="clothes">Clothes<input type="checkbox" name="category" value="clothes" id="clothes">
-            </label>
-            <br>
+            </label>&nbsp&nbsp
             <label for="auto">Auto<input type="checkbox" name="category" value="auto" id="auto">
-            </label>
-            <br>
-            <label for="children">Childen<input type="checkbox" name="category" value="children" id="children">
-            </label>
-            <br>
+            </label>&nbsp&nbsp
+            <label for="children">Children<input type="checkbox" name="category" value="children" id="children">
+            </label>&nbsp&nbsp
             <label for="pets">Pets<input type="checkbox" name="category" value="pets" id="pets">
-            </label>
+            </label>&nbsp&nbsp
             <label for="misc">Miscellaneous<input type="checkbox" name="category" value="miscellaneous" id="misc"
                                                  checked>
-            </label>
+            </label>&nbsp&nbsp
             <label for="home">Home<input type="checkbox" name="category" value="home" id="home">
             </label>
             <br>
