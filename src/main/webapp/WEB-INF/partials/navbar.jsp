@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default bg-secondary">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/users">Adlister</a>
         </div>
-        <ul class="nav navbar-nav navbar-right d-flex w-75 justify-content-end">
+        <ul class="nav d-flex w-75 justify-content-end">
             <c:choose>
                 <c:when test="${!sessionScope.loggedIn}">
                     <li><a href="/login">Login</a></li>
@@ -17,8 +17,8 @@
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/ads">View Ads</a></li>
                     <li><a href="/ads/create">Create Ad</a></li>
-                    <form action="/ads/search" method="post">
-                        <select name="category" id="category">
+                    <form action="/ads/search" method="post" class="mt-3 mb-0">
+                        <select name="category" id="category" >
                             <option value="all">All</option>
                             <option value="clothes">Clothes</option>
                             <option value="auto">Auto</option>
@@ -28,7 +28,7 @@
                             <option value="miscellaneous">Miscellaneous</option>
                         </select>
                         <input type="text" name="searchTerm" id="search">
-                        <button type="submit">Search Ads</button>
+                        <button type="submit" class="btn">Search Ads</button>
                     </form>
                 </c:otherwise>
             </c:choose>
