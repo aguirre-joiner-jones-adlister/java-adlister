@@ -185,6 +185,38 @@ public class MySQLAdsDao implements Ads {
         return numberOfRowsAffected;
     }
 
+    @Override
+    public List<Ad> searchAds(String searchTerm) {
+        List<Ad> filteredAds = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM ads WHERE title LIKE %?% OR description LIKE %?%";
+            PreparedStatement stmtSearch = connection.prepareStatement(query);
+            stmtSearch.setString(1, searchTerm);
+            stmtSearch.setString(2, searchTerm);
+            ResultSet rs = stmtSearch.executeQuery();
+            while(rs.next()){
+                Ad ad = new Ad(
+                        rs.getLong("id"),
+                        rs.getLong("user_id"),
+                        rs.getString("title"),
+                        rs.getString("description")
+                );
+                String query2 = "select c.name from ads as a join ad_category ac on a.id = ac.ads_id " +
+                        "join categories c on ac.categories_id = c.id" +
+                        " where a.id = ?";
+                PreparedStatement stmt2 = connection.prepareStatement(query2);
+                stmt2.setLong(1, rs.getLong("id"));
+                ResultSet rs2 = stmt2.executeQuery();
+                while (rs2.next()){
+                    ad.addToCategories(rs2.getString(1));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return filteredAds;
+    }
+
     public static void main(String[] args) {
         Ads adsDao = new MySQLAdsDao(new Config());
         adsDao.delete(1L);
