@@ -1,14 +1,12 @@
 package com.codeup.adlister.dao;
 
 
-import com.codeup.adlister.config.Config;
+
+
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Ad_Category;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +68,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public Long insert(Ad ad) {
+    public Long insert(Ad ad, String[] categories) {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
@@ -80,7 +78,21 @@ public class MySQLAdsDao implements Ads {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            return rs.getLong(1);
+            long adId = rs.getLong(1);
+            for (String category : categories) {
+                long adCatg = 5;
+                switch (category){
+                    case "clothes" : adCatg = 1; break;
+                    case "auto": adCatg = 2; break;
+                    case "children": adCatg = 3; break;
+                    case "pets": adCatg = 4; break;
+                    case "home": adCatg = 6; break;
+                    default: adCatg = 5;
+                }
+                Ad_Category ad_category = new Ad_Category(adId, adCatg);
+                insertAdCat(ad_category);
+            }
+            return adId;
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
@@ -130,8 +142,16 @@ public class MySQLAdsDao implements Ads {
                 found.setUserId(rs.getLong("user_id"));
                 found.setTitle(rs.getString("title"));
                 found.setDescription(rs.getString("description"));
+                String query2 = "select c.name from ads as a join ad_category ac on a.id = ac.ads_id " +
+                        "join categories c on ac.categories_id = c.id" +
+                        " where a.id = ?";
+                PreparedStatement stmt2 = connection.prepareStatement(query2);
+                stmt2.setLong(1, id);
+                ResultSet rs2 = stmt2.executeQuery();
+                while(rs2.next()){
+                    found.addToCategories(rs2.getString(1));
+                }
             }
-
 
         } catch( SQLException ex) {
             System.out.printf("ERROR: %s\n", ex);
@@ -140,21 +160,95 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public int editAd(Ad ad) {
-        return 0;
+    public void editAd(Ad ad, String[] categories) {
+        try {
+            delete(ad.getId());
+            insert(ad, categories);
+
+        } catch(Exception ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+
     }
 
     @Override
     public int delete(Long id) {
-        return 0;
+        int numberOfRowsAffected = 0;
+        try {
+            String deleteQuery = "delete from ads where id = ? ";
+            PreparedStatement stmtDelete = connection.prepareStatement(deleteQuery);
+            stmtDelete.setLong(1, id);
+            numberOfRowsAffected = stmtDelete.executeUpdate();
+        } catch(SQLException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        return numberOfRowsAffected;
+    }
+
+    @Override
+    public List<Ad> searchAds(String searchTerm) {
+        List<Ad> filteredAds = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
+            PreparedStatement stmtSearch = connection.prepareStatement(query);
+            stmtSearch.setString(1, '%' + searchTerm + '%');
+            stmtSearch.setString(2, '%' + searchTerm + '%');
+            ResultSet rs = stmtSearch.executeQuery();
+            while(rs.next()){
+                Ad ad = new Ad(
+                        rs.getLong("id"),
+                        rs.getLong("user_id"),
+                        rs.getString("title"),
+                        rs.getString("description")
+                );
+                String query2 = "select c.name from ads as a join ad_category ac on a.id = ac.ads_id " +
+                        "join categories c on ac.categories_id = c.id" +
+                        " where a.id = ?";
+                PreparedStatement stmt2 = connection.prepareStatement(query2);
+                stmt2.setLong(1, rs.getLong("id"));
+                ResultSet rs2 = stmt2.executeQuery();
+                while (rs2.next()){
+                    ad.addToCategories(rs2.getString(1));
+                }
+                filteredAds.add(ad);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return filteredAds;
+    }
+
+    @Override
+    public List<Ad> searchAdsWithCategory(String searchTerm, String category) {
+        List<Ad> filtered = new ArrayList<>();
+        try {
+            List<Ad> all = all();
+            for (Ad ad : all) {
+                ad.getCategories().forEach(cat -> {
+                    if(cat.equals(category))
+                        if(ad.getTitle().contains(searchTerm) ||
+                        ad.getDescription().contains(searchTerm)){
+                            filtered.add(ad);
+                        }
+                });
+            }
+
+
+        } catch(Exception ex) {
+            System.out.printf("ERROR: %s\n", ex.getStackTrace());
+        }
+        return filtered;
     }
 
     public static void main(String[] args) {
         Ads adsDao = new MySQLAdsDao(new Config());
+        adsDao.delete(1L);
        List<Ad> all = adsDao.all();
         for (Ad ad : all) {
+            System.out.println("id: " + ad.getId());
             System.out.println("Name: " + ad.getTitle());
-            ad.printCatg();
+
         }
+
     }
 }

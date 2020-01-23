@@ -10,7 +10,7 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    private List<String> categories;
+    private List<String> categories = new ArrayList<>();
 
     public Ad() {
     }
@@ -28,7 +28,6 @@ public class Ad {
         this.userId = userId;
         this.title = title;
         this.description = description;
-        this.categories = new ArrayList<>();
     }
 
 

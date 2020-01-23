@@ -9,10 +9,11 @@ public interface Ads {
     // get a list of all the ads
     List<Ad> all();
     // insert a new ad and return the new ad's id
-    Long insert(Ad ad);
+    Long insert(Ad ad, String[] categories);
     Ad getAdById(Long id);
-    int editAd(Ad ad);
+    void editAd(Ad ad, String[] categories);
     int delete(Long id);
-
+    List<Ad> searchAds(String searchTerm);
+    List<Ad> searchAdsWithCategory(String searchTerm, String category);
     void insertAdCat(Ad_Category adCat);
 }

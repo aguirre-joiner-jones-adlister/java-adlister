@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username VARCHAR(240) NOT NULL,
+    username VARCHAR(240) unique NOT NULL,
     email VARCHAR(240) NOT NULL,
     password VARCHAR(255) NOT NULL,
     avatar VARCHAR(2045) NOT NULL,
@@ -25,6 +25,15 @@ CREATE TABLE ads (
         ON DELETE CASCADE
 );
 
+SELECT * FROM ads WHERE title LIKE '%kids%' OR description LIKE '%kids%';
+
+create table if not exists categories (
+                                          id int unsigned auto_increment,
+                                          name varchar(30) not null,
+                                          primary key (id)
+
+);
+
 create table if not exists ad_category (
     ads_id int unsigned not null ,
     categories_id int unsigned not null,
@@ -34,13 +43,8 @@ create table if not exists ad_category (
                                        on delete cascade,
                                       constraint ac UNIQUE(ads_id, categories_id)
 );
+show tables;
 
-create table if not exists categories (
-    id int unsigned auto_increment,
-    name varchar(30) not null,
-    primary key (id)
-
-);
 
 insert into categories (name) values
 ('clothes'),
@@ -57,6 +61,8 @@ show tables;
 
 SELECT * FROM users;
 SELECT * FROM ads;
+select * from ad_category;
+select * from categories;
 
 insert into users(id,username,email,password,avatar)VALUE (1,'chris','chris@email.com', 'chris','');
 insert into ads(user_id, title, description)VALUE (1, 'cats for sell', 'really skinny kitties');

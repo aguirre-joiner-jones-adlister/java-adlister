@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -18,20 +19,20 @@
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
             <label>Categories<br>
-                <label for="clothes">Clothes<input type="checkbox" name="category" value="1" id="clothes">
+                <label for="clothes">Clothes<input type="checkbox" name="category" value="clothes" id="clothes">
                 </label>
                 <br>
-                <label for="auto">Auto<input type="checkbox" name="category" value="2" id="auto">
+                <label for="auto">Auto<input type="checkbox" name="category" value="auto" id="auto">
                 </label>
                 <br>
-                <label for="children">Childen<input type="checkbox" name="category" value="3" id="children">
+                <label for="children">Children<input type="checkbox" name="category" value="children" id="children">
                 </label>
                 <br>
-                <label for="pets">Pets<input type="checkbox" name="category" value="4" id="pets">
+                <label for="pets">Pets<input type="checkbox" name="category" value="pets" id="pets">
                 </label>
-                <label for="home">Home<input type="checkbox" name="category" value="5" id="home">
+                <label for="home">Home<input type="checkbox" name="category" value="home" id="misc">
                 </label>
-                <label for="misc">Miscellaneous<input type="checkbox" name="category" value="6" id="misc">
+                <label for="misc">Miscellaneous<input type="checkbox" name="category" value="miscellaneous" id="home">
                 </label>
                 <br>
             </label>

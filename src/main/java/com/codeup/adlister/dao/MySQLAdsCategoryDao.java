@@ -1,13 +1,13 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.config.Config;
+
+
 import com.codeup.adlister.models.Ad_Category;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class MySQLAdsCategoryDao  implements AdCategory{
     private Connection connection = null;
