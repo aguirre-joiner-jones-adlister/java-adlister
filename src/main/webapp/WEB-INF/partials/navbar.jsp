@@ -5,7 +5,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/users">Adlister</a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right d-flex w-75 justify-content-end">
             <c:choose>
                 <c:when test="${!sessionScope.loggedIn}">
                     <li><a href="/login">Login</a></li>
