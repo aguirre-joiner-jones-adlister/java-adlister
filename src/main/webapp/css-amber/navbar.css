@@ -1,0 +1,14 @@
+
+li {
+    margin-left: 5%;
+}
+.btn{
+    background-color: #2A9FD6;
+    color: white;
+}
+#id, #category {
+    line-height: 1.5;
+}
+.navbar-brand {
+    color: white;
+}
