@@ -189,10 +189,10 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> searchAds(String searchTerm) {
         List<Ad> filteredAds = new ArrayList<>();
         try{
-            String query = "SELECT * FROM ads WHERE title LIKE %?% OR description LIKE %?%";
+            String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
             PreparedStatement stmtSearch = connection.prepareStatement(query);
-            stmtSearch.setString(1, searchTerm);
-            stmtSearch.setString(2, searchTerm);
+            stmtSearch.setString(1, '%' + searchTerm + '%');
+            stmtSearch.setString(2, '%' + searchTerm + '%');
             ResultSet rs = stmtSearch.executeQuery();
             while(rs.next()){
                 Ad ad = new Ad(
@@ -210,11 +210,34 @@ public class MySQLAdsDao implements Ads {
                 while (rs2.next()){
                     ad.addToCategories(rs2.getString(1));
                 }
+                filteredAds.add(ad);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
         return filteredAds;
+    }
+
+    @Override
+    public List<Ad> searchAdsWithCategory(String searchTerm, String category) {
+        List<Ad> filtered = new ArrayList<>();
+        try {
+            List<Ad> all = all();
+            for (Ad ad : all) {
+                ad.getCategories().forEach(cat -> {
+                    if(cat.equals(category))
+                        if(ad.getTitle().contains(searchTerm) ||
+                        ad.getDescription().contains(searchTerm)){
+                            filtered.add(ad);
+                        }
+                });
+            }
+
+
+        } catch(Exception ex) {
+            System.out.printf("ERROR: %s\n", ex.getStackTrace());
+        }
+        return filtered;
     }
 
     public static void main(String[] args) {

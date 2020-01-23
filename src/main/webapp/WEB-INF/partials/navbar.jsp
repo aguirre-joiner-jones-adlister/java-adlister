@@ -18,6 +18,15 @@
                     <li><a href="/ads">View Ads</a></li>
                     <li><a href="/ads/create">Create Ad</a></li>
                     <form action="/ads/search" method="post">
+                        <select name="category" id="category">
+                            <option value="all">All</option>
+                            <option value="clothes">Clothes</option>
+                            <option value="auto">Auto</option>
+                            <option value="children">Children</option>
+                            <option value="pets">Pets</option>
+                            <option value="homes">Home</option>
+                            <option value="miscellaneous">Miscellaneous</option>
+                        </select>
                         <input type="text" name="searchTerm" id="search">
                         <button type="submit">Search Ads</button>
                     </form>

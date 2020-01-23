@@ -14,6 +14,6 @@ public interface Ads {
     void editAd(Ad ad, String[] categories);
     int delete(Long id);
     List<Ad> searchAds(String searchTerm);
-
+    List<Ad> searchAdsWithCategory(String searchTerm, String category);
     void insertAdCat(Ad_Category adCat);
 }

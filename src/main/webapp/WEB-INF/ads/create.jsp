@@ -25,14 +25,14 @@
                 <label for="auto">Auto<input type="checkbox" name="category" value="auto" id="auto">
                 </label>
                 <br>
-                <label for="children">Childen<input type="checkbox" name="category" value="children" id="children">
+                <label for="children">Children<input type="checkbox" name="category" value="children" id="children">
                 </label>
                 <br>
                 <label for="pets">Pets<input type="checkbox" name="category" value="pets" id="pets">
                 </label>
-                <label for="home">Miscellaneous<input type="checkbox" name="category" value="miscellaneous" id="misc">
+                <label for="home">Home<input type="checkbox" name="category" value="home" id="misc">
                 </label>
-                <label for="misc">Home<input type="checkbox" name="category" value="home" id="home">
+                <label for="misc">Miscellaneous<input type="checkbox" name="category" value="miscellaneous" id="home">
                 </label>
                 <br>
             </label>
