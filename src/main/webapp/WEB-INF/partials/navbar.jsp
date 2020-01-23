@@ -2,10 +2,10 @@
 <nav class="navbar navbar-default bg-secondary">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/users">Adlister</a>
+        <div class="d-flex align-items-center">
+            <a  href="/users" id="adListView">Adlister</a>
         </div>
-        <ul class="nav d-flex w-75 justify-content-end">
+        <ul class="nav d-flex w-75 justify-content-end align-items-center">
             <c:choose>
                 <c:when test="${!sessionScope.loggedIn}">
                     <li><a href="/login">Login</a></li>
@@ -17,7 +17,7 @@
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/ads">View Ads</a></li>
                     <li><a href="/ads/create">Create Ad</a></li>
-                    <form action="/ads/search" method="post" class="mt-3 mb-0">
+                    <form action="/ads/search" method="post" class="mb-0 ml-3">
                         <select name="category" id="category" >
                             <option value="all">All</option>
                             <option value="clothes">Clothes</option>

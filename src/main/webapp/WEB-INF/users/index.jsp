@@ -12,18 +12,22 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <h1>Here are all of our users!</h1>
+    <h1 class="text-center mt-3">Here are all of our users!</h1>
 
+        <div class="row justify-content-around">
     <c:forEach var="user" items="${users}">
-        <div class="col-md-6 card">
+
+        <span class="card col-4 userCard my-4 ">
             <h2><c:out value="${user.username}"/></h2>
             <img src="<c:out value="${user.avatar}"/>" alt="avatar" class="img-thumbnail rounded" style="height: 50px; width: 50px">
             <c:if test="${sessionScope.user.id eq user.id}">
                 <a href="/update">Edit Profile</a>
                 <a href="/delete">Delete Profile</a>
             </c:if>
-        </div>
+            </span>
+
     </c:forEach>
+        </div>
 
 
 </body>
