@@ -1,0 +1,14 @@
+/*:root {*/
+/*  --blue: #276290;*/
+/*  --brown: #A87E69;*/
+/*  --mild-white: #E6D9D4;*/
+/*  --pure-white: #FDFEFE;*/
+/*  --aqua: #55B4DE;*/
+/*  --pastel-blue: #50f6f9*/
+/*}*/
+body {
+  background: #A87E69 !important;
+}
+.jumbotron {
+  background: #276290 !important;
+}
