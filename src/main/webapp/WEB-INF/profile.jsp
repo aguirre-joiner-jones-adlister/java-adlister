@@ -10,14 +10,16 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
+        <img src="<c:out value="${user.avatar}"/>" alt="avatar" class="img-thumbnail rounded" style="height: 100px; width: 100px">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
         <a href="/update">Update Profile</a>
         <a href="/delete">Delete Profile</a>
     </div>
+    <h2>Here Are Your Current Ads</h2>
 <c:forEach var="ad" items="${userAds}">
     <div style="border: 2px solid black">
-        <h1>title = ${ad.title}</h1>
-        <h2>description = ${ad.description}</h2>
+        <h1>${ad.title}</h1>
+        <h2>${ad.description}</h2>
         <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
         <a href="/ads/delete?adId=${ad.id}">Delete Ad</a>
 

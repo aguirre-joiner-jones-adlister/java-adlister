@@ -24,7 +24,7 @@
                             <option value="auto">Auto</option>
                             <option value="children">Children</option>
                             <option value="pets">Pets</option>
-                            <option value="homes">Home</option>
+                            <option value="home">Home</option>
                             <option value="miscellaneous">Miscellaneous</option>
                         </select>
                         <input type="text" name="searchTerm" id="search">

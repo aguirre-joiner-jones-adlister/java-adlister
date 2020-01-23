@@ -32,17 +32,18 @@ public class RegisterServlet extends HttpServlet {
             // validate input
             boolean inputHasErrors = username.isEmpty()
                     || email.isEmpty()
+                    || !email.contains("@")
                     || password.isEmpty()
                     || (! password.equals(passwordConfirmation));
 
             if (inputHasErrors) {
-                response.sendRedirect("/register");
+                response.sendRedirect("/register?alert=true&message=Invalid User Info");
                 return;
             }
             List<User> all = DaoFactory.getUsersDao().all();
             for (User user : all) {
                 if(user.getUsername().toLowerCase().equals(username.toLowerCase())){
-                    response.sendRedirect("/register?alert=true&message=Username_Already_Exists");
+                    response.sendRedirect("/register?alert=true&message=Username Already Exists");
                     return;
                 }
 
