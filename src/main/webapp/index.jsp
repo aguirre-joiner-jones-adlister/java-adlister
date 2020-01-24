@@ -50,7 +50,7 @@
                      src="https://images.unsplash.com/photo-1557176595-c6fce4b961e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3290&q=80"
                      class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="text-primary">Jewlrey</h2>
+                    <h2 class="text-primary">Jewelry</h2>
                     <p class="text-primary">Free to all Ambers</p>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                   <img src="https://images.unsplash.com/photo-1579741370033-29721093f49c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Coffee Homebrew</h5>
-                    <p class="card-text">We Source All Our Coffee's, We Are True Coffee HUNTERS</p>
+                    <p class="card-text">We Source All Our Coffees, We Are True Coffee HUNTERS</p>
                     <a href="/ads" class="btn btn-primary">View Ads</a>
                   </div>
                 </div>
@@ -116,7 +116,7 @@
     <%--        end--%>
 
 </div>
-<div class="bg-secondary d-flex justify-content-around" style="height: 100px;">
+<div class="bg-secondary d-flex justify-content-around align-items-center" style="height: 100px;">
     <a href="/users">Users</a>
     <a href="/register">Register</a>
     <a href="/login">Login</a>
