@@ -26,7 +26,8 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
-        <div class="jumbotron jumbotron-fluid m-auto text-center bg-primary" style="position: relative; z-index: 0;">
+        <div class="jumbotron jumbotron-fluid m-auto text-center bg-primary" style="position: relative; z-index:
+        0;">
             <img src="/css-amber/img/tree-branches-frame-border-png-clipart-free.png" id="border" alt="">
             <h1 class="center m-auto" id="user">Welcome, ${sessionScope.user.username.toUpperCase()}!</h1>
         </div>
@@ -36,7 +37,7 @@
                 <img src="<c:out value="${user.avatar}"/>" alt="avatar" class="img-thumbnail rounded" style="height: 100px; width: 100px">
             </div>
             <div class="col col-8">
-                <a href="/update" class="btn btn-info" role="button">Update Profile</a>
+                <a href="/update" class="btn btn-info" role="button">Edit Profile</a>
                 <a href="/delete" class="btn btn-warning" role="button">Delete Profile</a>
             </div>
         </div>

@@ -19,6 +19,7 @@
         .background {
             background: #efefef;
         }
+
     </style>
 
 </head>
@@ -26,7 +27,8 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid m-auto text-center bg-primary
-        d-flex justify-content-center align-items-center" style="position: relative; z-index: 1">
+        d-flex justify-content-center align-items-center"
+         style="position: relative; z-index: 1;">
         <img src="/css-amber/img/tree-branches-frame-border-png-clipart-free.png" id="border" alt="">
         <img src="http://pngimg.com/uploads/turkey/turkey_PNG58593.png" alt="logo"
         style="height: 100px; width: 120px">

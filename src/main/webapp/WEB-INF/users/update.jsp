@@ -21,7 +21,10 @@
     </jsp:include>
 </head>
 <body>
-<h1>update</h1>
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+
+<div class="container p-5">
+<h1>Edit Profile:</h1>
 
 <form method="post" action="/update">
     <input type="text" value="${sessionScope.user.id}" name="id" hidden>
@@ -46,9 +49,10 @@
         <label for="img">Image URL:</label>
         <input type="text" class="form-control" id="img" name="img" value="${sessionScope.user.avatar}">
     </div>
+    <a href="/profile" class="btn btn-primary">Back</a>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
+</div>
 
 </body>
 </html>
