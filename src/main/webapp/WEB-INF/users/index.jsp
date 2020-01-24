@@ -9,10 +9,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <jsp:include page="/WEB-INF/partials/head.jsp" />
 
+    <style>
+        #border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+        }
+        .background {
+            background: #efefef;
+        }
+
+    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="container p-3 text-center" >
+    <div class="jumbotron jumbotron-fluid m-auto text-center bg-primary
+        d-flex justify-content-center align-items-center"
+         style="position: relative; z-index: 1;">
+        <img src="/css-amber/img/tree-branches-frame-border-png-clipart-free.png" id="border" alt="">
+        <img src="http://pngimg.com/uploads/turkey/turkey_PNG58593.png" alt="logo"
+             style="height: 100px; width: 120px">
+    </div>
+
     <h1 class="m-auto">Adlister Users:</h1>
         <div class="row d-flex justify-content-center">
     <c:forEach var="user" items="${users}">

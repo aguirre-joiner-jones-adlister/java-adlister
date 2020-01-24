@@ -11,9 +11,12 @@
         #ads-header{
         color:#276290;}
 
-        body{background-image: url("https://wallstreetnation.com/wp-content/uploads/2017/01/wsnpic8-11.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;}
+        body{
+            background-image: url("https://wallstreetnation.com/wp-content/uploads/2017/01/wsnpic8-11.jpg");
+            /*background-repeat: no-repeat;*/
+            background-attachment: fixed;
+            background-size: cover;
+        }
         .card{background-color: rgba(0,0,0,.8);}
         .card-title{background-color: rgba(39, 98, 144, 0.8)}
         .ad-card {
