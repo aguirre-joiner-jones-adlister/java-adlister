@@ -12,25 +12,33 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <h1 class="text-center mt-3">Here are all of our users!</h1>
-<div class="container">
-        <div class="row userRow">
-            <div class="col-12 ">
+<div class="container p-3 text-center" >
+    <h1 class="m-auto">Adlister Users:</h1>
+        <div class="row d-flex justify-content-center">
     <c:forEach var="user" items="${users}">
 
-        <div class="card userCard float-left mx-5 my-3 ">
-            <h2><c:out value="${user.username}"/></h2>
+        <div class="col col-5 card mx-3 my-3 ">
+            <div class="card-body">
+                <div class="card-title text-center">
+            <h4 class="bg-primary"><c:out value="${user.username.toUpperCase()}"/></h4>
+                </div>
+                <div class="row">
+                    <div class="col col-4">
             <img src="<c:out value="${user.avatar}"/>" alt="avatar" class="img-thumbnail rounded" style="height: 50px; width: 50px">
-            <c:if test="${sessionScope.user.id eq user.id}">
-                <a href="/update">Edit Profile</a>
-                <a href="/delete">Delete Profile</a>
-            </c:if>
-            </div>
+                    </div>
+                    <div class="col col-7">
+                        <c:if test="${sessionScope.user.id eq user.id}">
+                            <a href="/update" class="mx-2">Edit Profile</a>
+                            <a href="/delete" class="mx-2">Delete Profile</a>
+                        </c:if>
+                    </div>
+                </div>
 
+            </div>
+            </div>
     </c:forEach>
         </div>
-</div>
-</div>
+        </div>
 
 </body>
 </html>
