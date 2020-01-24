@@ -19,14 +19,15 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container-fluid text-center row">
     <h1 id="ads-header">Here Are all of our ads!</h1>
+<div class="container-fluid text-center row px-0 w-100 m-auto d-flex justify-content-center"
+ >
 
     <c:choose>
         <c:when test="${not empty sessionScope.filtered}">
             <c:forEach var="ad" items="${sessionScope.filtered}">
-                <div class="col-md-6 card ad-card text-center">
-                    <h2 class="card-title"><c:out value="${ad.title}"/></h2>
+                <div class="col-sm-3 mx-1 card ad-card text-center">
+                    <h2 class="card-title h-50"><c:out value="${ad.title}"/></h2>
                     <p class="card-body"> <c:out value="${ad.description}"/></p>
                     <c:forEach var="category" items="${ad.categories}">
                         <p class="card-text"> <c:out value="${category}"/></p>
@@ -42,8 +43,8 @@
         </c:when>
         <c:otherwise>
             <c:forEach var="ad" items="${ads}">
-                <div class="col-md-6 card ad-card">
-                    <h2 class="card-title"><c:out value="${ad.title}"/></h2>
+                <div class="col-sm-3 m-1 card ad-card">
+                    <h2 class="card-title h-50"><c:out value="${ad.title}"/></h2>
                     <p class="card-body"> <c:out value="${ad.description}"/></p>
                     <c:forEach var="category" items="${ad.categories}">
                         <p class="card-text"> <c:out value="${category}"/></p>
