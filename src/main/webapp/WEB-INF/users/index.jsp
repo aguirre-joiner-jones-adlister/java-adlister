@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <h1 class="text-center mt-3">Here are all of our users!</h1>
-<div class="container ">
+<div class="container">
         <div class="row userRow">
             <div class="col-12 ">
     <c:forEach var="user" items="${users}">
