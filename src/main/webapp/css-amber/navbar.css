@@ -9,6 +9,9 @@ li {
 #id, #category {
     line-height: 1.5;
 }
-.navbar-brand {
-    color: white;
+#adListView {
+    color: white;!important;
+}
+.userCard {
+    width: 40% !important;
 }
