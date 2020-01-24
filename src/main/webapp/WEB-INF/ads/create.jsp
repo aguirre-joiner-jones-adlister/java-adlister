@@ -7,8 +7,10 @@
     </jsp:include>
 </head>
 <body>
-    <div class="container">
-        <h1>Create a new Ad</h1>
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+
+    <div class="container p-5">
+        <h1>Create Ad:</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -18,24 +20,32 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
-            <label>Categories<br>
-                <label for="clothes">Clothes<input type="checkbox" name="category" value="clothes" id="clothes">
-                </label>
-                <br>
-                <label for="auto">Auto<input type="checkbox" name="category" value="auto" id="auto">
-                </label>
-                <br>
-                <label for="children">Children<input type="checkbox" name="category" value="children" id="children">
-                </label>
-                <br>
-                <label for="pets">Pets<input type="checkbox" name="category" value="pets" id="pets">
-                </label>
-                <label for="home">Home<input type="checkbox" name="category" value="home" id="misc">
-                </label>
-                <label for="misc">Miscellaneous<input type="checkbox" name="category" value="miscellaneous" id="home">
-                </label>
-                <br>
-            </label>
+            <div class="form-group form-check">
+                    <input type="checkbox" name="category" value="clothes" id="clothes" class="form-check-input">
+                    <label for="clothes" class="form-check-label">Clothes</label>
+            </div>
+            <div class="form-group form-check">
+                    <input type="checkbox" name="category" value="auto" id="auto" class="form-check-input">
+                    <label for="auto" class="form-check-label">Auto</label>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" name="category" value="children" id="children" class="form-check-input">
+                <label for="children" class="form-check-label">Children</label>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" name="category" value="pets" id="pets" class="form-check-input">
+                <label for="pets" class="form-check-label">Pets</label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" name="category" value="home" id="misc" class="form-check-input">
+                <label for="home" class="form-check-label">Home</label>
+            </div>
+            <div class="form-group form-check">
+                    <input type="checkbox" name="category" value="miscellaneous" id="home" class="form-check-input">
+                <label for="misc" class="form-check-label">Miscellaneous</label>
+            </div>
 
             <input type="submit" class="btn btn-block btn-primary">
         </form>
