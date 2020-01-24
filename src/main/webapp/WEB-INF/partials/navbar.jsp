@@ -17,7 +17,7 @@
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/ads">View Ads</a></li>
                     <li><a href="/ads/create">Create Ad</a></li>
-                    <form action="/ads/search" method="post" class="mb-0 ml-3">
+                    <form action="/ads/search" method="post" class="mb-0 ml-3" >
                         <select name="category" id="category" >
                             <option value="all">All</option>
                             <option value="clothes">Clothes</option>
