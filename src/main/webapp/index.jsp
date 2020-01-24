@@ -5,43 +5,60 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Welcome to my site!"/>
     </jsp:include>
-
+    <style>
+        #border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+        }
+        .background {
+            background: #efefef;
+        }
+    </style>
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container-fluid">
-    <div class="jumbotron jumbotron-fluid m-auto text-center bg-primary">
-        <h1 class="center m-auto">ADLISTER</h1>
+    <div class="jumbotron jumbotron-fluid m-auto text-center bg-primary
+        d-flex justify-content-center align-items-center" style="position: relative; z-index: 1">
+        <img src="/css-amber/img/tree-branches-frame-border-png-clipart-free.png" id="border" alt="">
+        <img src="http://pngimg.com/uploads/turkey/turkey_PNG58593.png" alt="logo"
+        style="height: 100px; width: 120px">
     </div>
     <%--        carousel--%>
-    <div id="carouselExampleInterval" class="carousel slide " data-ride="carousel" style="height: 400px;">
+    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style="height: 550px;">
         <div class="carousel-inner">
             <div class="carousel-item active" data-interval="10000">
-                <img style="height: 400px; max-width: 100%"
+                <img style="height: 100%; max-width: 100%"
                      src="https://images.unsplash.com/photo-1553451193-d4d44c036555?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80"
                      class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="text-primary">Classic Books</h2>
-                    <p class="text-primary">Disney Legacy Classics</p>
+                <div class="carousel-caption d-none d-md-block ">
+                        <h2 class="text-primary">Classic Books</h2>
+                        <p class="text-primary">Disney Legacy Classics</p>
                 </div>
             </div>
             <div class="carousel-item" data-interval="2000">
-                <img style="height: 400px; max-width: 100%"
-                     src="https://images.unsplash.com/photo-1576644461179-ddd318c669e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80"
+                <img style="height: 100%; max-width: 100%"
+                     src="https://images.unsplash.com/photo-1557176595-c6fce4b961e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3290&q=80"
                      class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="text-primary">Gum</h2>
+                    <h2 class="text-primary">Jewlrey</h2>
                     <p class="text-primary">Free to all Ambers</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img style="height: 400px; max-width: 100%"
-                     src="https://images.unsplash.com/photo-1542273086-ac11130c6126?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1655&q=80"
+                <img style="height: 100%; max-width: 100%"
+                     src="https://images.unsplash.com/photo-1474625121024-7595bfbc57ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2255&q=80"
                      class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="text-primary">Nail Polish</h2>
-                    <p class="text-primary">Lady Glitter Sparkles color.</p>
+                    <h2 class="text-primary">Homemade Soap</h2>
+                    <p class="text-primary">Lady Glitter Sparkles.</p>
                 </div>
             </div>
         </div>
