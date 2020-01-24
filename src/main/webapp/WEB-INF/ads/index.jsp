@@ -6,8 +6,12 @@
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
     <style>
+<<<<<<< HEAD
         #ads-header{
         color:#276290;}
+=======
+        #ads-header{color:#276290;}
+>>>>>>> 179e12925fdceb9eeb6fb1a7c460c14a8146f317
         body{background-image: url("https://wallstreetnation.com/wp-content/uploads/2017/01/wsnpic8-11.jpg");
         background-repeat: no-repeat;
         background-size: cover;}
