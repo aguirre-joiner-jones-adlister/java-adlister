@@ -15,10 +15,15 @@
     <title>Edit</title>
 </head>
 <body>
-<c:if test="${param.alert}">
-    <h1>Title and Description Required</h1>
-</c:if>
-<div class="container">
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+
+<div class="container p-5">
+
+    <c:if test="${param.alert}">
+        <h1>Title and Description Required</h1>
+    </c:if>
+    <h1>Edit Profile:</h1>
+
     <form action="/ads/edit" method="post">
         <input type="text" value="${ad.id}" name="id" hidden>
         <input type="text" value="${ad.userId}" name="userId" hidden>
@@ -31,23 +36,37 @@
             <input id="description" name="description" class="form-control" type="text" value="${ad.description}"/>
         </div>
         <h4>Please re-select categories</h4>
-        <label>Categories<br>
-            <label for="clothes">Clothes<input type="checkbox" name="category" value="clothes" id="clothes">
-            </label>&nbsp&nbsp
-            <label for="auto">Auto<input type="checkbox" name="category" value="auto" id="auto">
-            </label>&nbsp&nbsp
-            <label for="children">Children<input type="checkbox" name="category" value="children" id="children">
-            </label>&nbsp&nbsp
-            <label for="pets">Pets<input type="checkbox" name="category" value="pets" id="pets">
-            </label>&nbsp&nbsp
-            <label for="misc">Miscellaneous<input type="checkbox" name="category" value="miscellaneous" id="misc"
-                                                 checked>
-            </label>&nbsp&nbsp
-            <label for="home">Home<input type="checkbox" name="category" value="home" id="home">
-            </label>
-            <br>
-        </label>
-
+        <div class="form-group form-check">
+                <input type="checkbox" name="category" class="form-check-input"
+                       value="clothes" id="clothes">
+            <label for="clothes" class="form-check-label">Clothes </label>
+        </div>
+        <div class="form-group form-check">
+                <input type="checkbox" name="category" class="form-check-input"
+                       value="auto" id="auto">
+            <label for="auto" class="form-check-label">Auto</label>
+        </div>
+        <div class="form-group form-check">
+                <input type="checkbox" name="category" class="form-check-input"
+                       value="children" id="children">
+            <label for="children" class="form-check-label">Children</label>
+        </div>
+        <div class="form-group form-check">
+                <input type="checkbox" name="category" class="form-check-input"
+                       value="pets" id="pets">
+            <label for="pets" class="form-check-label">Pets</label>
+        </div>
+        <div class="form-group form-check">
+                <input type="checkbox" name="category" class="form-check-input"
+                       value="miscellaneous" id="misc"
+                       checked>
+            <label for="misc" class="form-check-label">Miscellaneous</label>
+        </div>
+        <div  class="form-group form-check">
+                <input type="checkbox" name="category" class="form-check-input"
+                       value="home" id="home">
+                <label for="home">Home</label>
+        </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
 </div>
