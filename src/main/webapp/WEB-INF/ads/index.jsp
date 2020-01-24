@@ -6,8 +6,7 @@
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
     <style>
-        #ads-header{margin-left:30%;
-        color:#276290;}
+        #ads-header{color:#276290;}
         body{background-image: url("https://wallstreetnation.com/wp-content/uploads/2017/01/wsnpic8-11.jpg");
         background-repeat: no-repeat;
         background-size: cover;}
@@ -19,7 +18,7 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-    <h1 id="ads-header">Here Are all of our ads!</h1>
+    <h1 id="ads-header" class="text-center">Here Are all of our ads!</h1>
 <div class="container-fluid text-center row px-0 w-100 m-auto d-flex justify-content-center"
  >
 
