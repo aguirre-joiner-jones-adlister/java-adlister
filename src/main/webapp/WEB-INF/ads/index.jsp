@@ -8,6 +8,7 @@
     <style>
         #ads-header{
         color:#276290;}
+
         body{background-image: url("https://wallstreetnation.com/wp-content/uploads/2017/01/wsnpic8-11.jpg");
         background-repeat: no-repeat;
         background-size: cover;}

@@ -8,10 +8,11 @@
 </head>
 <body>
     <jsp:include page="partials/navbar.jsp" />
-    <c:if test="${param.alert}">
-        <h1 class="text-danger">${param.message}</h1>
-    </c:if>
-    <div class="container">
+
+    <div class="container p-5">
+        <c:if test="${param.alert}">
+            <h1 class="text-danger">${param.message}</h1>
+        </c:if>
         <h1 class="text-primary">Register</h1>
         <form action="/register" method="post">
             <div class="form-group">
