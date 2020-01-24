@@ -15,7 +15,14 @@
         background-repeat: no-repeat;
         background-size: cover;}
         .card{background-color: rgba(0,0,0,.8);}
-        .card-title{background-color: rgba(39, 98, 144, 0.8)
+        .card-title{background-color: rgba(39, 98, 144, 0.8)}
+        .ad-card {
+            height: 50vh;
+        }
+        .adCardHead {
+            height: 10vh;
+            min-height: 60px;
+            margin: 0;
         }
     </style>
 </head>
@@ -30,17 +37,18 @@
         <c:when test="${not empty sessionScope.filtered}">
             <c:forEach var="ad" items="${sessionScope.filtered}">
                 <div class="col-sm-3 mx-1 card ad-card text-center mb-3">
-                    <h4 class="card-title h-50"><c:out value="${ad.title}"/></h4>
-                    <p class="card-body"> <c:out value="${ad.description}"/></p>
+                    <h5 class="card-title adCardHead overflow-auto"><c:out value="${ad.title}"/></h5>
+                    <p class="card-body overflow-auto"> <c:out value="${ad.description}"/></p>
                     <div class="d-flex flex-wrap">
                     <c:forEach var="category" items="${ad.categories}">
                         <span class="badge badge-pill badge-info mx-2">${category}</span>
                     </c:forEach>
                     </div>
                     <c:if test="${sessionScope.user.id eq ad.userId}">
-                        <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
+                    <div class="d-flex justify-content-around mt-1">
+                    <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
                         <a href="/ads/delete?adId=${ad.id}">Delete Ad</a>
-
+                    </div>
                     </c:if>
                 </div>
             </c:forEach>
@@ -48,19 +56,19 @@
         <c:otherwise>
             <c:forEach var="ad" items="${ads}">
                 <div class="col-sm-3 m-1 card ad-card">
-                    <h2 class="card-title h-50"><c:out value="${ad.title}"/></h2>
-                    <p class="card-body"> <c:out value="${ad.description}"/></p>
+                    <h5 class="card-title adCardHead overflow-auto"><c:out value="${ad.title}"/></h5>
+                    <p class="card-body overflow-auto"> <c:out value="${ad.description}"/></p>
                     <div class="d-flex flex-wrap">
                     <c:forEach var="category" items="${ad.categories}">
                         <span class="badge badge-pill badge-info mx-2">${category}</span>
                     </c:forEach>
                     </div>
-                        <%--            <p> <c:out value="${ad.categories}"/></p>--%>
 
                     <c:if test="${sessionScope.user.id eq ad.userId}">
+                        <div class="d-flex justify-content-around mt-1">
                         <a href="/ads/edit?adId=${ad.id}">Edit Ad</a>
                         <a href="/ads/delete?adId=${ad.id}">Delete Ad</a>
-
+                        </div>
                     </c:if>
                 </div>
             </c:forEach>
