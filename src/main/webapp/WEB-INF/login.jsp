@@ -8,10 +8,12 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <c:if test="${param.alert}">
+
+    <div class="container p-5">
+        <c:if test="${param.alert}">
             <h1 class="text-danger">Incorrect Login Info</h1>
-    </c:if>
-    <div class="container">
+        </c:if>
+
         <h1>Please Log In</h1>
         <form action="/login" method="POST">
             <div class="form-group">
