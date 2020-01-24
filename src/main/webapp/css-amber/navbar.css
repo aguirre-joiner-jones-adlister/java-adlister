@@ -1,6 +1,14 @@
-
+html, body, .container{
+    height: 100%;
+    width: 100%;
+}
 li {
     margin-left: 5%;
+}
+.userRow {
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 .btn{
     background-color: #2A9FD6;
@@ -17,4 +25,7 @@ li {
     min-height: 30%;
     max-height: 30%;
     padding-left: 5%;
+}
+.navbar {
+    font-size: 1.5em;
 }
