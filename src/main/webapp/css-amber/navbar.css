@@ -13,5 +13,8 @@ li {
     color: white;!important;
 }
 .userCard {
-    width: 40% !important;
+    width: 40%;
+    min-height: 30%;
+    max-height: 30%;
+    padding-left: 5%;
 }
