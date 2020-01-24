@@ -46,7 +46,7 @@
     <h2 class="text-capitalize">Current Ads:</h2>
         <div class="row">
             <c:forEach var="ad" items="${userAds}">
-                <div class="card col col-10 m-auto">
+                <div class="card col col-10 mx-auto mb-4">
                     <div class="card-title bg-primary text-center">
                         <h1>${ad.title}</h1></div>
                     <div class="card-body">
