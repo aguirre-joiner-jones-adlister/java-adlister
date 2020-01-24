@@ -13,7 +13,7 @@
         margin-top: 15%;
         background-image: url("https://assets.pcmag.com/media/images/440226-take-it-back.jpg?thumb=y&width=810&height=456");
         background-size: cover;}
-        h1{color: #77b300;
+        h1{color: #b30d06;
         background-color: rgba(0,0,0,.6);}
     </style>
 </head>
@@ -21,11 +21,11 @@
 <h1>Are you sure you want to delete your awesome profile?!</h1>
 <form method="post" action="/delete">
     <input type="text" value="${sessionScope.user.id}" name="id" hidden>
-    <button type="submit" class="btn btn-success">Click to Confirm Delete</button>
+    <button type="submit" class="btn btn-danger">Click to Confirm Delete</button>
 </form>
 <form action="/profile">
     <input type="text" value="${sessionScope.user.id}" name="id" hidden>
-    <button type="submit" class="btn btn-danger">Click to Return to Profile</button>
+    <button type="submit" class="btn btn-success">Click to Return to Profile</button>
 </form>
 </body>
 </html>
